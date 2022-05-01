@@ -3,7 +3,7 @@ void slack.zslack(string channel, string text)
 	mp = Map();
 	mp.put("channel",channel);
 	mp.put("text",text);
-	mp.put("token","xoxp-391491440630-1892068614374-1901198098371-0951f59a97d92f98fdfa21c6a8504110");
+	mp.put("token","");
 	x = invokeurl
 [
 	url :"https://slack.com/api/chat.postMessage"
