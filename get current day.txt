@@ -1,0 +1,31 @@
+daynumber = now.getDayOfWeek();
+if (daynumber  ==  1)
+{
+    Day = "Sun";
+}
+if (daynumber  ==  2)
+{
+    Day = "Mon";
+}
+if (daynumber  ==  3)
+{
+    Day = "Tue";
+}
+if (daynumber  ==  4)
+{
+    Day = "Wed";
+}
+if (daynumber  ==  5)
+{
+    Day = "Thu";
+}
+if (daynumber  ==  6)
+{
+    Day = "Fri";
+}
+if (daynumber  ==  7)
+{
+    Day = "Sat";
+}
+
+info Day ;

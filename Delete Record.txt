@@ -1,0 +1,5 @@
+deleteRecordMap = Map();
+deleteRecordMap.put("module","Accounts");
+deleteRecordMap.put("id",4041794000000263057);
+deleteResp = zoho.crm.invokeConnector("crm.delete",deleteRecordMap);
+info deleteResp ;

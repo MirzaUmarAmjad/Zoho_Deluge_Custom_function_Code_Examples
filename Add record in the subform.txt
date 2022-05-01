@@ -1,0 +1,15 @@
+getrec = zoho.crm.getRecordById("Deals",id);
+// info getrec.get("Customer_Informations") ;
+li = list();
+for each  x in getrec.get("Customer_Informations")
+{
+	sub = Map();
+	sub.put("Name1",x.get("Name1"));
+	sub.put("Nationality",x.get("Nationality"));
+	sub.put("Gender",x.get("Gender"));
+	sub.put("Age",x.get("Age"));
+	sub.put("Passport_No",x.get("Passport_No"));
+	li.add(sub);
+	// info li ;
+}
+info li;

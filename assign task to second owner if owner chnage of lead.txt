@@ -1,0 +1,10 @@
+getRelRec = zoho.crm.getRelatedRecords("Tasks","Leads",input.id.toString());
+getrec = zoho.crm.getRecordById("Leads",input.id);
+// info getrec.get("SMOWNERID") ;
+for each x in getRelRec
+{
+	if(x.get("Status")  !=  "Completed")
+	{
+		updRec = zoho.crm.updateRecord("Tasks",(x.get("ACTIVITYID")).toString(),{ "SMOWNERID" : (getrec).get("SMOWNERID") });
+	}
+}

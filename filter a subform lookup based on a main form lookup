@@ -1,0 +1,7 @@
+You have to add a script in PO tracking Form > Subform field "Product sold" > On Add Row section :
+
+clear row.Product;
+// get list of all matching products where vendor equals Vendor filled in main form (for example)
+prod_list = Products_form [Vendor == input.Vendor].ID.getAll();
+// fill dropdown with filtered values
+row.Product:ui.append(prod_list);

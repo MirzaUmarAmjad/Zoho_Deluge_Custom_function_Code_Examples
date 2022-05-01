@@ -1,0 +1,18 @@
+/ date1 = today.toString("yyyy-MM-dd");
+// info date1;
+// zz = zoho.crm.update("Deals",id,{"FIrst_sign_up_date":date1});
+// info zz;
+xmlData = '<Potentials><row no="1">';
+xmlData += '<FL val="Stage">Qualification</FL>';
+xmlData += "</row></Potentials>";
+info xmlData ;
+
+url ="https://crm.zoho.com/crm/private/xml/Potentials/updateRecords?";
+PotentialMap=map();
+PotentialMap.put("authtoken","64fc1f2b97503e95c0f4eab05e5bd33f");
+PotentialMap.put("scope","crmapi");
+PotentialMap.put("wfTrigger","true");
+PotentialMap.put("id",id);
+PotentialMap.put("xmlData",xmlData);
+updation = postUrl(url,PotentialMap);
+// info updation;

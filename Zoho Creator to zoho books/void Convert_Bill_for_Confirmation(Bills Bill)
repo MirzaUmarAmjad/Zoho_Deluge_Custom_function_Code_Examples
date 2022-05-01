@@ -1,0 +1,91 @@
+void Convert_Bill_for_Confirmation(Bills Bill)
+{
+	//global variable	
+	OldProductDetailList = List();
+	NewProductDetailList = List();
+	DeletedProductDetailList = List();
+	zohoBooksItemsList = List();
+	zohoCreatorItemsList = List();
+	OldProductDetailToAdd = Collection();
+	NewProductDetailToAdd = Collection();
+	DeletedProductDetailToAdd = Collection();
+	allInvoices = Bills[Bills_id == Bill.Bills_id];
+	//single invoice id
+	invoiceId = allInvoices.Bills_id;
+	//fetch invoice data by ID from zoho books
+	invoiceRecFromBook = invokeurl
+[
+	url :"https://books.zoho.com/api/v3/bills/" + invoiceId + "?organization_id=662862623"
+	type :GET
+	connection:"ZohoBookConnection"
+];
+	invoiceRecFromBook = invoiceRecFromBook.get("bill").get("line_items");
+	for each  PerinvoiceRecFromBook in invoiceRecFromBook
+	{
+		zohoBooksItemsList.add(PerinvoiceRecFromBook.get("item_id"));
+	}
+	//creator invoice product sku
+	for each  allInvoice in allInvoices
+	{
+		zohoCreatorItemsMap = Map();
+		//fetch item id from sku from zoho books
+		response = zoho.books.getRecords("Items","662862623","sku=" + allInvoice.Product_SKU,"ZohoBookConnection");
+		var = response.get("items");
+		itemId = "";
+		for each  var1 in var
+		{
+			itemId = var1.toMap().get("item_id");
+		}
+		zohoCreatorItemsMap.put("Product_SKU",allInvoice.Product_SKU);
+		zohoCreatorItemsMap.put("Quantity",allInvoice.Quantity);
+		zohoCreatorItemsMap.put("Price",allInvoice.Price);
+		zohoCreatorItemsMap.put("itemId",itemId);
+		zohoCreatorItemsList.add(zohoCreatorItemsMap);
+	}
+	//old product
+	for each  zohoCreatorItem in zohoCreatorItemsList
+	{
+		if(zohoBooksItemsList.contains(zohoCreatorItem.get("itemId")) == true)
+		{
+			old_row = Order_Detail_Verification.Old_Product_Detail();
+			old_row.Product_SKU=zohoCreatorItem.get("Product_SKU");
+			old_row.Quantity=zohoCreatorItem.get("Quantity");
+			old_row.Price=zohoCreatorItem.get("Price");
+			old_row.Product_Id=zohoCreatorItem.get("itemId");
+			OldProductDetailToAdd.insert(old_row);
+			zohoBooksItemsList.removeElement(zohoCreatorItem.get("itemId"));
+			zohoCreatorItemsList.removeElement(zohoCreatorItem);
+		}
+	}
+	// new product
+	for each  zohoCreatorItem in zohoCreatorItemsList
+	{
+		new_row = Order_Detail_Verification.New_Product_Detail();
+		new_row.Product_SKU=zohoCreatorItem.get("Product_SKU");
+		new_row.Quantity=zohoCreatorItem.get("Quantity");
+		new_row.Price=zohoCreatorItem.get("Price");
+		new_row.Product_Id=zohoCreatorItem.get("itemId");
+		NewProductDetailToAdd.insert(new_row);
+	}
+	for each  zohoBooksItem in zohoBooksItemsList
+	{
+		getItem = zoho.books.getRecordsByID("Items","662862623",zohoBooksItem,"ZohoBookConnection");
+		delete_row = Order_Detail_Verification.Deleted_Product_Detail();
+		delete_row.Product_SKU=getItem.get("item").get("sku");
+		delete_row.Product_Name=getItem.get("item").get("name");
+		DeletedProductDetailToAdd.insert(delete_row);
+	}
+	// 			//create record in invoice
+	insertRec = insert into Order_Detail_Verification
+[
+	Added_User=zoho.loginuser
+	Bill_Id=allInvoices.Bills_id
+	Order_Type="Bill"
+	Old_Product_Detail=OldProductDetailToAdd
+	New_Product_Detail=NewProductDetailToAdd
+	Deleted_Product_Detail=DeletedProductDetailToAdd
+	Status="Not Completed"
+];
+	//delete rec
+	delete from Bills[Bills_id == Bill.Bills_id];
+}

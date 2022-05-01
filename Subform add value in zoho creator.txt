@@ -1,0 +1,27 @@
+//get subform value from crm
+creator_data = zoho.creator.getRecords("provisionsportsmanagement315","warehouse-management-system","All_Event_Items");
+crm_data = zoho.crm.getRecordById("Potentials",input.CRM_Deal.toLong());
+Event_Rec = crm_data.get("Event_Items");
+
+//create xml in zoho creator for update values
+xml = '';
+xml = '<ZohoCreator><applicationlist><application name="warehouse-management-system"><viewlist><view name="All_Event_Items"><update>';
+xml = (xml + '<criteria><![CDATA[(ID == "') + input.ID.toString() + '")]]></criteria>';
+xml = (xml + '<newvalues><field name="Event_Name"><value>'+crm_data.get("Deal_Name")+'</value></field><field name="SubForm">');
+for each  x in Event_Rec
+{
+	xml = (xml + '<add><field name="Product">') + x.get("Product").get("name") + '</field><field name="Quantity">' + x.get("Quantity") + '</field><field name="Details">' + x.get("Details") + '</field></add>';
+}
+xml = (xml + '</field></newvalues></update></view></viewlist></application></applicationlist></ZohoCreator>');
+Authorization_Map = Map();
+Authorization_Map.put("authtoken","d9a9b2a4ed08f20582b42f7d1477a019");
+Authorization_Map.put("scope","creatorapi");
+Authorization_Map.put("zc_ownername","provisionsportsmanagement315");
+Authorization_Map.put("XMLString",xml);
+response = invokeurl
+[
+	url :"https://creator.zoho.com/api/xml/write"
+	type :POST
+	parameters:Authorization_Map
+];
+info response;

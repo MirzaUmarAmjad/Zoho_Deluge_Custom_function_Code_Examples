@@ -1,0 +1,9 @@
+user = Add_User[Email == "leo+zoho1@fluidmarket.com"].Market;
+warehouseMarket = Add_Warehouse[Market == user];
+if(warehouseMarket.Warehouse_Name != "Everywhere")
+{
+// update loopup values in creator
+
+clear Select_Warehouse;
+input.Select_Warehouse:ui.add(warehouseMarket.ID.getall());
+}

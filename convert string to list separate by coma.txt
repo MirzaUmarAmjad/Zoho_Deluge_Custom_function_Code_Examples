@@ -1,0 +1,10 @@
+
+x = zoho.recruit.getRecordById("Candidates",id);
+e = x.get("Skill Set");
+//convert the string to list using .toList() function with ''," as separator.
+strlist = e.toList(",");
+//Iterate the list
+for each  elem in strlist
+{
+	info elem;
+}

@@ -1,0 +1,23 @@
+serviceList = collection();
+// loop all fetched WO with same order number
+for each
+{
+			//search for service by name and market in master rate card			
+			row1 = WorkOrder.Installation_Details();
+			row1.Service = masterRateCards.ID ;
+			row1.Quantity = allWO.Quantity ;
+			serviceList.insert(row1) ;
+		}
+
+
+		crtWO = insert into WorkOrder
+[
+	Added_User=zoho.loginuser
+	Work_Order_Number=allWOs.Work_Order_Number
+	Customer_Name=allWOs.Customer_Name
+	Customer_Phone=allWOs.Customer_Phone
+	Customer_Email=allWOs.Customer_Email
+	Customer_Address=allWOs.Address
+	Scheduled_Date_and_Time=allWOs.Scheduled_Date_Time
+	Installation_Details=serviceList
+];

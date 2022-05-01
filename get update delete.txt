@@ -1,0 +1,20 @@
+getrec = zoho.crm.getRecords("CustomModule3");
+i=0;
+for each e in getrec
+{
+	if(i  ==  0)
+	{
+		user=e.get("CustomModule3 Name");
+		pass=e.get("Password");
+		code=e.get("Code");
+		eId=e.get("CUSTOMMODULE3_ID");
+	}
+	i=(i  +  1);
+}
+expdata=map();
+expdata.put("Player Activation Username",user);
+expdata.put("Password",pass);
+expdata.put("Code",code);
+upd = zoho.crm.updateRecord("Potentials",input.id.toString(),expdata);
+apple = getUrl("https://crm.zoho.com/crm/private/xml/CustomModule3/deleteRecords?authtoken=958ec6557df23bdefe3b9cc9aa6c5eff&scope=crmapi&id=" + eId);
+info apple;

@@ -1,0 +1,21 @@
+mp = Map();
+mp.put("Auftrag","test");
+mp.put("Name","test");
+mp.put("Auftrag.Delivery_Date","test");
+mp.put("Order_Number","test");
+mergeMp = Map();
+mergeMp.put("merge_data",{"data":mp});
+format = "pdf";
+outputMap = Map();
+outputMap.put("doc_name","test doc");
+mergeFile = zoho.writer.mergeAndDownload("56vf004e72ea9b708419db3954fb8a11daa29", format, mergeMp, "writercrt") ;
+
+mergeFile.setParamName("file");
+responce = invokeurl
+[
+	url :"https://creator.zoho.eu/api/v2/r.zimmermann_zimmermannrecycling/sorting-application/report/Clenches_Report/102337000000007007/Label_Print_File/upload"
+	type :POST
+	files:mergeFile
+	connection:"crtauth"
+];
+info responce;

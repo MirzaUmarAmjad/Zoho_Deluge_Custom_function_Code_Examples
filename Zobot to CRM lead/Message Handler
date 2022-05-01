@@ -1,0 +1,34 @@
+response = Map();
+msg = message.get("text");
+if(!msg.isNull())
+{
+	response.put("action","context");
+	if(msg.equalsIgnoreCase("Yes"))
+	{
+		response.put("context_id","Yes");
+		response.put("replies",{"Kindly fill the details."});
+		questions = Collection();
+		//name
+		question1 = {"name":"name","replies":{{"text":"Kindly enter your name:"}},"input":{"type":"name","placeholder":"Enter your name","error":{"Enter a valid name"}}};
+		//phone
+		question2 = {"name":"phone","replies":{{"text":"Kindly enter your phone:"}},"input":{"type":"tel","placeholder":"Enter phone number","error":{"Enter a valid phone number"}}};
+		//email
+		question3 = {"name":"email","replies":{{"text":"Kindly enter your email:"}},"input":{"type":"email","placeholder":"Enter your email","error":{"Enter a valid email"}}};
+		//question
+		question4 = {"name":"question","replies":{{"text":"Kindly enter your query:"}}};
+		//contact preference
+		question5 = {"name":"contactPreference","replies":{{"text":"Kindly select your contact preference:"}},"input":{"type":"select","options":{"Call me","Send me an Email"}}};
+		questions.insert(question1);
+		questions.insert(question2);
+		questions.insert(question3);
+		questions.insert(question4);
+		questions.insert(question5);
+		response.put("questions",questions);
+	}
+	else if(msg.equalsIgnoreCase("No"))
+	{
+		response.put("action","end");
+		response.put("replies",{{"text":"Thanks, If you have any query kindly let us know. Have a Great day."}});
+	}
+}
+return response;

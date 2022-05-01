@@ -1,0 +1,6 @@
+CustomField = Map();
+CustomField.put("label","Total Profit in percentage");
+CustomField.put("value",percentage);
+CustomFields.add(CustomField);
+json = Map();
+json.put("custom_fields",CustomFields);

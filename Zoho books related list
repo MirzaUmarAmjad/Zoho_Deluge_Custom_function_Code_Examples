@@ -1,0 +1,76 @@
+
+orgId = 700762234;
+resultMap = Map();
+marginHeader = List();
+listData = List();
+marginHeader.add({"key":"itemName","value":"Name"});
+marginHeader.add({"key":"qty","value":"Qty","align":"right"});
+marginHeader.add({"key":"cost","value":"Cost","align":"right"});
+marginHeader.add({"key":"lineValue","value":"Line Cost","align":"right"});
+marginHeader.add({"key":"lineSale","value":"Line Sale","align":"right"});
+marginHeader.add({"key":"profit","value":"Profit","align":"right"});
+marginHeader.add({"key":"margin","value":"Margin","align":"right"});
+items = salesorder.get("line_items");
+totalCost = 0;
+totalProfit = 0;
+totalMargin = 0;
+for each  line in items
+{
+	try 
+	{
+		id = line.get("item_id");
+		details = zoho.books.getRecordsByID("items",orgId,id);
+		details = details.get("item");
+		name = details.get("name");
+		marginDetails = Map();
+		qty = line.get("quantity").round(2);
+		sale = line.get("item_total").round(2);
+		costPrice = details.get("purchase_rate").round(2);
+		lineValue = (qty * costPrice).round(2);
+		itemCost = qty * costPrice;
+		totalCost = totalCost + lineValue;
+		lineTotal = line.get("item_total");
+		profit = sale - itemCost;
+		totalProfit = totalProfit + profit;
+		margin = (profit / lineTotal * 100).round(2);
+		totalMargin = totalMargin + margin;
+		marginDetails.put("margin",margin.round(0) + "%");
+		marginDetails.put("itemName",name);
+		marginDetails.put("qty",qty.round(2) + "");
+		marginDetails.put("cost",costPrice.round(2) + "");
+		marginDetails.put("lineValue",lineValue.round(2) + "");
+		marginDetails.put("lineSale",sale.round(2) + "");
+		marginDetails.put("profit",profit.round(2) + "");
+		listData.add(marginDetails);
+	}
+ catch (e)
+	{	}
+}
+seperator = Map();
+seperator.put("seperator","");
+listData.add(seperator);
+saleValue = salesorder.get("sub_total");
+saleValue = toDecimal(saleValue);
+totalMargin = totalProfit / saleValue * 100;
+totalDetails = Map();
+totalDetails.put("itemName","Nett : ");
+totalDetails.put("lineValue",totalCost.text("##,###.00") + "");
+totalDetails.put("profit",totalProfit.text("##,###.00"));
+totalDetails.put("lineSale",salesorder.get("sub_total").text("##,###.00"));
+totalDetails.put("margin",totalMargin.round(0) + "%");
+listData.add(totalDetails);
+resultMap.put("header_context",marginHeader);
+resultMap.put("data",listData);
+gross = toDecimal(salesorder.get("total"));
+gtotalCost = totalCost;
+gprofit = totalProfit;
+gmargin = gprofit / gross * 100;
+gtotalDetails = Map();
+gtotalDetails.put("itemName","Gross : ");
+gtotalDetails.put("profit",gprofit.text("##,###.00"));
+gtotalDetails.put("lineValue",gtotalCost.text("##,###.00") + "");
+gtotalDetails.put("lineSale",gross.text("##,###.00"));
+gtotalDetails.put("margin",gmargin.round(0) + "%");
+listData.add(gtotalDetails);
+resultMap.put("data",listData);
+return resultMap;

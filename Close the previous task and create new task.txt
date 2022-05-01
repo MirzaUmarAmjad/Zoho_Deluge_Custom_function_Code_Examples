@@ -1,0 +1,48 @@
+getrec = zoho.crm.getRecordById("Potentials",id);
+if(isBlank(((getrec).get("Task id")).toString()))
+{
+	contactIdDeal=((getrec).get("CONTACTID")).toString();
+	relatedIdDeal=(getrec).get("POTENTIALID");
+	smownerIdDeal=((getrec).get("SMOWNERID")).toString();
+	dealStage=(getrec).get("Stage");
+	dealSubject="You move on to the " + dealStage + " phase.";
+	datetime=now;
+	time=datetime.toTime();
+	meetingTime=addDay(time,15);
+	mp=map();
+	mp.put("Status","Not Started");
+	mp.put("Priority","High");
+	mp.put("SEMODULE","Potentials");
+	mp.put("CONTACTID",contactIdDeal);
+	mp.put("SEID",id);
+	mp.put("SMOWNERID",smownerIdDeal);
+	mp.put("Due Date",meetingTime);
+	mp.put("Subject",dealSubject);
+	Task = zoho.crm.create("Tasks",mp);
+	upd = zoho.crm.updateRecord("Potentials", id.toString(), {"Task id":Task.get("Id")}) ;
+	
+}
+else
+{
+	taskupd = zoho.crm.updateRecord("Tasks", getrec.get("Task id"), {"Status":"Completed"}) ;
+	contactIdDeal=((getrec).get("CONTACTID")).toString();
+	relatedIdDeal=(getrec).get("POTENTIALID");
+	smownerIdDeal=((getrec).get("SMOWNERID")).toString();
+	dealStage=(getrec).get("Stage");
+	dealSubject="You move on to the " + dealStage + " phase.";
+	datetime=now;
+	time=datetime.toTime();
+	meetingTime=addDay(time,15);
+	mp=map();
+	mp.put("Status","Not Started");
+	mp.put("Priority","High");
+	mp.put("SEMODULE","Potentials");
+	mp.put("CONTACTID",contactIdDeal);
+	mp.put("SEID",id);
+	mp.put("SMOWNERID",smownerIdDeal);
+	mp.put("Due Date",meetingTime);
+	mp.put("Subject",dealSubject);
+	Task = zoho.crm.create("Tasks",mp);
+	upd = zoho.crm.updateRecord("Potentials", id.toString(), {"Task id":Task.get("Id")}) ;
+}
+

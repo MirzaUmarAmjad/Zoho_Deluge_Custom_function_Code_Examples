@@ -1,0 +1,33 @@
+void sms.sendMMS(int recID, string imageFileLink)
+{
+	sendSms = Send_SMS[ID == recID];
+	//keys
+	password = "9c150c0241bd4a34b4614485a835abad";
+	username = "17c63750";
+	//header
+	baseEncoded = zoho.encryption.base64Encode(username + ":" + password);
+	header = Map();
+	header.put('Authorization','Basic ' + baseEncoded);
+	header.put('Content-Type','application/vnd.api+json');
+	//body
+	media_urls = List();
+	media_urls.add(imageFileLink);
+	mp = Map();
+	mp.put("to",sendSms.To);
+	mp.put("from",sendSms.From);
+	mp.put("body",sendSms.Message);
+	mp.put("is_mms","true");
+	mp.put("media_urls",media_urls);
+	data = Map();
+	data.put("attributes",mp);
+	data.put("type","message");
+	ls = Map();
+	ls.put("data",data);
+	res = invokeurl
+[
+	url :"https://api.flowroute.com/v2.2/messages"
+	type :POST
+	parameters:ls.toString()
+	headers:header
+];
+}

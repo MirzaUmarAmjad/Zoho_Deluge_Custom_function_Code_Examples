@@ -1,0 +1,12 @@
+userResp  = getUrl(("https://crm.zoho.com/crm/private/xml/Users/getUsers?authtoken=15c82aa912b9bb9353159ff28d39d8cb&scope=crmapi&type=ActiveUsers"));
+users = userResp.executeXPath("/users/user");
+ userList = users.toList("-|-");
+ for each user in userList
+ {
+ emailNode = user.executeXPath("/user/@email");
+ email = emailNode.executeXPath("/email/text()");
+ idNode = user.executeXPath("/user/@id");
+ id = idNode.executeXPath("/id/text()");
+ info email;
+ info id;
+ }

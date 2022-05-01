@@ -1,0 +1,39 @@
+Authorization_Map = Map();
+Authorization_Map.put("Authorization","Basic NzBlNWM3OTMzNTM0NDIxNWE4Y2UyMDgwZGU1ZDlmMWM6NTNhNzY2ZWQzMzhhNGY2YTk5ZjE5NDU3NzU4YWFlOGM=");
+Parameter_map = Map();
+Parameter_map.put("orderNumber","112-5150513-1933833");
+response = invokeUrl("https://ssapi.shipstation.com/orders","GET",Parameter_map,Authorization_Map,true);
+Orders = response.get("orders");
+Adv_opt = Orders.get(0).get("advancedOptions");
+Store_id = Adv_opt.get("storeId");
+Order_Num = Orders.get(0).get("orderNumber");
+P_Date = Orders.get(0).get("paymentDate").toString("dd-MMM-yyyy");
+Ship = Orders.get(0).get("shipTo");
+Items = Orders.get(0).get("items");
+xml = '';
+xml = '<ZohoCreator><applicationlist><application name="warehouse-management-system"><viewlist><view name="Start_Return_Report"><update>';
+xml = (xml + '<criteria><![CDATA[(ID == "') + input.ID.toString() + '")]]></criteria>';
+xml = (xml + '<newvalues><field name="Name:{First_Name}"><value>67</value></field><field name="Item_Numbers">');
+for each  x in Items
+{
+	xml = (xml + '<add><field name="Description">') + x.get("name") + '</field><field name="Qty">' + x.get("quantity") + '</field><field name="Item_Number">' + x.get("sku") + '</field><field name="Original_Price_Paid">' + x.get("unitPrice") + '</field></add>';
+}
+xml = (xml + '</field></newvalues></update></view></viewlist></application></applicationlist></ZohoCreator>');
+Authorization_Map = Map();
+Authorization_Map.put("authtoken","d9a9b2a4ed08f20582b42f7d1477a019");
+Authorization_Map.put("scope","creatorapi");
+Authorization_Map.put("zc_ownername","provisionsportsmanagement315");
+Authorization_Map.put("XMLString",xml);
+response = invokeurl
+[
+	url :"https://creator.zoho.com/api/xml/write"
+	type :POST
+	parameters:Authorization_Map
+];
+input.Purchase_Date = P_Date;
+input.Name.last_name = Ship.get("name");
+input.Address.address_line_1 = Ship.get("street1");
+input.Address.district_city = Ship.get("city");
+input.Address.state_province = Ship.get("state");
+input.Address.country = Ship.get("country");
+input.Address.postal_Code = Ship.get("postalCode");

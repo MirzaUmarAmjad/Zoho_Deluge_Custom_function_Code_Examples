@@ -1,0 +1,34 @@
+getrec = zoho.crm.getRecords("Tasks");
+for each x in getrec
+{
+	daysDifference=0;
+	diffOfTime=0;
+	taskCreatTime=x.get("Modified Time");
+	time=taskCreatTime.toTime();
+	currenttime=now.toTime();
+	//system current time
+	timeInDays=time.getDayOfYear();
+	currentTimeInDays=now.getDayOfYear();
+	daysDifference=(currentTimeInDays  -  timeInDays);
+	min=time.getMinutes();
+	hour=time.getHour();
+	timeInMinute=(hour  *  60  +  min);
+	currentMin=currenttime.getMinutes();
+	currentHour=currenttime.getHour();
+	cuurrentTimeInMinute=(currentHour  *  60  +  currentMin);
+	diffOfTime=(cuurrentTimeInMinute  -  timeInMinute);
+	info diffOfTime;
+	leadURL="https://crm.zoho.com/crm/EntityInfo.do?module=Leads&id=" + x.get("RELATEDTOID");
+	if(((x.get("mail sent")  !=  "Yes")  &&  (x.get("Status")  !=  "Completed"))  &&  ((daysDifference  !=  0)  ||  (diffOfTime  >  30)))
+	{
+		sendmail
+		[
+			from:zoho.adminuserid
+			to: zoho.adminuserid , , x.get("SMOWNERID")
+			subject:"test"
+			message:("Call does not make by agent in 30 minutes. ") + leadURL
+			content type:HTML
+		]
+		ap = zoho.crm.updateRecord("Tasks",(x.get("ACTIVITYID")).toString(),{ "mail sent" : "Yes" });
+	}
+}

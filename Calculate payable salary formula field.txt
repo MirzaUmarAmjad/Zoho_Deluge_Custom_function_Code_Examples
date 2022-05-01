@@ -1,0 +1,1 @@
+Round(((Current_Salary/(((DateDiff(End_Salary_Date,Start_Salary_Date,'Day'))*9)+9))*Working_Hour)+Bonus+House_Allowance)

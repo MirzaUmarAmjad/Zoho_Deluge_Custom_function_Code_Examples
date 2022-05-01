@@ -1,0 +1,9 @@
+date Util.convertTimeZones(date dateTimeToConvert, string fromTZ, string toTZ)
+{
+dateTimeFormat = "MM-dd-yy hh:mm:ss a";
+//
+fromTimeZoneDT = dateTimeToConvert.toString().toTime(dateTimeFormat,fromTZ);
+//info "fromTimeZoneDT: " + fromTimeZoneDT;
+//
+return fromTimeZoneDT.toString(dateTimeFormat,toTZ).toTime(dateTimeFormat);
+}

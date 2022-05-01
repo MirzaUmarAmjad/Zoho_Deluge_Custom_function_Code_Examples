@@ -1,0 +1,70 @@
+userResp = getUrl(("https://crm.zoho.com/crm/private/xml/Users/getUsers?authtoken=15c82aa912b9bb9353159ff28d39d8cb&scope=crmapi&type=ActiveUsers"));
+users = userResp.executeXPath("/users/user");
+userList=users.toList("-|-");
+i=0;
+for each user in userList
+{
+	emailNode = user.executeXPath("/user/@email");
+	email = emailNode.executeXPath("/email/text()");
+	idNode = user.executeXPath("/user/@id");
+	id = idNode.executeXPath("/id/text()");
+	roleNode = user.executeXPath("/user/@role");
+	role = roleNode.executeXPath("/role/text()");
+	if(role  ==  "Manager")
+	{
+		i=(i  +  1);
+	}
+}
+//calculate total users in zoho crm
+getnumber = zoho.crm.getRecordById("CustomModule1",2889906000000333083);
+if(((getnumber).get("Number")).toLong()  ==  i)
+{
+	x=0;
+	for each user in userList
+	{
+		emailNode = user.executeXPath("/user/@email");
+		email = emailNode.executeXPath("/email/text()");
+		idNode = user.executeXPath("/user/@id");
+		id = idNode.executeXPath("/id/text()");
+		roleNode = user.executeXPath("/user/@role");
+		role = roleNode.executeXPath("/role/text()");
+		if(role  ==  "Manager")
+		{
+			x=(x  +  1);
+			if(x  ==  1)
+			{
+				ap = zoho.crm.updateRecord("CustomModule1","2889906000000333083",{ "user id" : id, "user email" : email, "Number" : 1 });
+			}
+		}
+	}
+}
+else
+{
+	i=0;
+	x=(((getnumber).get("Number")).toLong()  +  1);
+	for each user in userList
+	{
+		emailNode = user.executeXPath("/user/@email");
+		email = emailNode.executeXPath("/email/text()");
+		idNode = user.executeXPath("/user/@id");
+		id = idNode.executeXPath("/id/text()");
+		roleNode = user.executeXPath("/user/@role");
+		role = roleNode.executeXPath("/role/text()");
+		if(role  ==  "Manager")
+		{
+			i=(i  +  1);
+			if(x  ==  i)
+			{
+				ap = zoho.crm.updateRecord("CustomModule1","2889906000000333083",{ "user id" : id, "user email" : email, "Number" : i });
+				info ap;
+			}
+		}
+	}
+}
+
+
+getRoundRobin = zoho.crm.getRecordById("CustomModule1", 2889906000000333083) ;
+leadUpdate = zoho.crm.updateRecord("Leads", leadid.toString(), {"Lead assign to":"Agent","SMOWNERID":getRoundRobin.get("user id")}) ;
+
+
+

@@ -1,0 +1,67 @@
+getrec = zoho.crm.getRecordById("Deals",id);
+if(getrec.get("Contact_Name") != null)
+{
+	contactName = getrec.get("Contact_Name").get("name");
+	contactid = getrec.get("Contact_Name").get("id");
+	getContact = zoho.crm.getRecordById("Contacts",contactid);
+	if(getContact.get("Email") != null)
+	{
+		fileAttachmentList = list();
+		//Proposal
+		if(getrec.get("File_Upload_1") != Null)
+		{
+			attachmentId = getrec.get("File_Upload_1").get(0).get("attachment_Id");
+			proposal = invokeurl
+			[
+				url :"https://www.zohoapis.com/crm/v2/Potentials/" + id + "/Attachments/" + attachmentId
+				type :GET
+				connection:"zcrm"
+			];
+			fileAttachmentList.add(proposal);
+		}
+		//Excel data
+		if(getrec.get("Excel_data") != Null)
+		{
+			attachmentId = getrec.get("Excel_data").get(0).get("attachment_Id");
+			exceldata = invokeurl
+			[
+				url :"https://www.zohoapis.com/crm/v2/Potentials/" + id + "/Attachments/" + attachmentId
+				type :GET
+				connection:"zcrm"
+			];
+			fileAttachmentList.add(exceldata);
+		}
+		//Invoice
+		if(getrec.get("Invoice") != Null)
+		{
+			attachmentId = getrec.get("Invoice").get(0).get("attachment_Id");
+			invoice = invokeurl
+			[
+				url :"https://www.zohoapis.com/crm/v2/Potentials/" + id + "/Attachments/" + attachmentId
+				type :GET
+				connection:"zcrm"
+			];
+			fileAttachmentList.add(invoice);
+		}
+		//W9
+		if(getrec.get("W9") != Null)
+		{
+			attachmentId = getrec.get("W9").get(0).get("attachment_Id");
+			w9 = invokeurl
+			[
+				url :"https://www.zohoapis.com/crm/v2/Potentials/" + id + "/Attachments/" + attachmentId
+				type :GET
+				connection:"zcrm"
+			];
+			fileAttachmentList.add(w9);
+		}
+		sendmail
+		[
+			from :zoho.loginuserid
+			to :getContact.get("Email")
+			subject :"After appointment"
+			message :'<html><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"><meta content="width=device-width" name="viewport"></head><body><div style="font-family: Verdana,arial,Helvetica,sans-serif;"><div doc-id="line_037210839538109064" style="font-family: Arial; font-size: 6px; background-color: rgb(255, 255, 255); box-sizing: content-box; outline: 0px; z-index: 4; padding: 0px; margin: 0px;"><div style="outline: 0px; padding: 0px; margin: 0px;"><span data-text-len="3" style="outline: 0px; unicode-bidi: bidi-override; font-family: &quot;DejaVu Sans&quot;, Verdana; font-size: 10pt; padding: 0px; margin: 0px;">Hi ' + contactName + '</span><span data-text-len="1" style="outline: 0px; unicode-bidi: bidi-override; font-family: &quot;DejaVu Sans&quot;, Verdana; font-size: 10pt; padding: 0px; margin: 0px;">,</span><span data-text-len="1" style="outline: 0px; unicode-bidi: bidi-override; font-family: Carlito, Calibri; font-size: 0pt; padding: 0px; margin: 0px;">​</span></div></div><div doc-id="line_038099061790854605" style="font-family: Arial; font-size: 6px; background-color: rgb(255, 255, 255); box-sizing: content-box; outline: 0px; z-index: 4; padding: 0px; margin: 0px;"><div style="outline: 0px; padding: 0px; margin: 0px;"><span data-text-len="1" style="outline: 0px; unicode-bidi: bidi-override; font-family: Carlito, Calibri; font-size: 0pt; padding: 0px; margin: 0px;">​</span></div></div><div doc-id="line_07054975676901831" style="font-family: Arial; font-size: 6px; background-color: rgb(255, 255, 255); box-sizing: content-box; outline: 0px; z-index: 4; padding: 0px; margin: 0px;"><div style="outline: 0px; padding: 0px; margin: 0px;"><span data-text-len="77" style="outline: 0px; unicode-bidi: bidi-override; font-family: &quot;DejaVu Sans&quot;, Verdana; font-size: 10pt; padding: 0px; margin: 0px;">Thank&nbsp;you&nbsp;again&nbsp;for&nbsp;choosing&nbsp;Arbor&nbsp;Environmental&nbsp;to&nbsp;complete&nbsp;your&nbsp;fit&nbsp;testing</span><span data-text-len="12" style="outline: 0px; unicode-bidi: bidi-override; font-family: &quot;DejaVu Sans&quot;, Verdana; font-size: 10pt; padding: 0px; margin: 0px;">.&nbsp;I&nbsp;hope&nbsp;the</span><span data-text-len="1" style="outline: 0px; unicode-bidi: bidi-override; font-family: &quot;DejaVu Sans&quot;, Verdana; font-size: 10pt; background-color: rgba(0, 0, 0, 0); padding: 0px; margin: 0px;">&nbsp;</span><span data-text-len="18" style="outline: 0px; unicode-bidi: bidi-override; font-family: &quot;DejaVu Sans&quot;, Verdana; font-size: 10pt; padding: 0px; margin: 0px;">testing&nbsp;went&nbsp;well</span><span data-text-len="68" style="outline: 0px; unicode-bidi: bidi-override; font-family: &quot;DejaVu Sans&quot;, Verdana; font-size: 10pt; padding: 0px; margin: 0px;">.&nbsp;Attached&nbsp;please&nbsp;find&nbsp;the&nbsp;fit &nbsp;testing&nbsp;documentation&nbsp;for&nbsp;your&nbsp;files,</span><span data-text-len="1" style="background-color: rgba(0, 0, 0, 0); outline: 0px; unicode-bidi: bidi-override; font-family: &quot;DejaVu Sans&quot;, Verdana; font-size: 10pt; padding: 0px; margin: 0px;">&nbsp;&nbsp;</span><span data-text-len="85" style="outline: 0px; unicode-bidi: bidi-override; font-family: &quot;DejaVu Sans&quot;, Verdana; font-size: 10pt; padding: 0px; margin: 0px;">as&nbsp;well&nbsp;as&nbsp;the&nbsp;invoice.&nbsp;These&nbsp;should&nbsp;be&nbsp;incorporated&nbsp;into&nbsp;your&nbsp;respiratory&nbsp;protection</span><span data-text-len="1" style="background-color: rgba(0, 0, 0, 0); outline: 0px; unicode-bidi: bidi-override; font-family: &quot;DejaVu Sans&quot;, Verdana; font-size: 10pt; padding: 0px; margin: 0px;">&nbsp;</span><span style="font-family: &quot;DejaVu Sans&quot;, Verdana; font-size: 10pt;">program.</span></div></div><div doc-id="line_018658500769860575" style="font-family: Arial; font-size: 6px; background-color: rgb(255, 255, 255); box-sizing: content-box; outline: 0px; z-index: 4; padding: 0px; margin: 0px;"><div style="outline: 0px; padding: 0px; margin: 0px;"><br></div><div style="outline: 0px; padding: 0px; margin: 0px;"><span data-text-len="8" style="outline: 0px; unicode-bidi: bidi-override; font-family: &quot;DejaVu Sans&quot;, Verdana; font-size: 10pt; padding: 0px; margin: 0px;"><div style="outline: 0px; padding: 0px; margin: 0px;">&nbsp;</div><div style="outline: 0px; padding: 0px; margin: 0px;">Please let us know if you have any questions or if there is anything else you need. We will&nbsp;</div><div style="outline: 0px; padding: 0px; margin: 0px;">reach out with a reminder email next year when the fit testing is up for renewal.&nbsp;&nbsp;</div><div style="outline: 0px; padding: 0px; margin: 0px;">&nbsp;</div><div style="outline: 0px; padding: 0px; margin: 0px;">Kind regards,&nbsp;</div></span></div></div></div></body></html>'
+			Attachments :file:fileAttachmentList
+		]
+	}
+}

@@ -1,0 +1,11 @@
+void sms.fetchMMSImage(int id)
+{
+	getMMS = Send_SMS[ID == id] ;
+	
+	r = getMMS.MMS_URL.toJSONList() ;
+	imageURL = r.getJSON("attributes").get("url") ;
+	if ( imageURL.isEmpty() == false ) 
+    {
+		getMMS.Image = "<img src = \"" + imageURL + "\" border = \"0\"></img>" ;
+    }
+}

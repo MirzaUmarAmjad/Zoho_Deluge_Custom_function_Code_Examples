@@ -1,0 +1,15 @@
+.imports {
+    @import url(https://fonts.googleapis.com/css?family=Lato:100,300,400,700,900,300italic,400italic,700italic);
+}
+.document {
+    h1,h2,h3,p,td,li,a,span,div,body {font-family: 'Lato', sans-serif;}
+    h1 {color: #6E6969; font-size: 18px;}
+    h2 {color: #6E6969; font-size: 18px; padding: 3px 0 3px 8px;}
+    h3 {font-size: 14px;}
+    p,td,li,a {font-size: 14px;}
+    th, thead {font-size: 14px; font-weight: 300; border: none; background-color: #DEE5EC;}
+    td {padding: 5px;}
+}
+.doc-block__content h2 {background-color: #DEE5EC;}
+.doc-table__tbl-section {font-size: 14px; font-weight: 300; background-color: #DEE5EC;}
+.doc-header__text {font-size: 12px; font-weight: 300;}

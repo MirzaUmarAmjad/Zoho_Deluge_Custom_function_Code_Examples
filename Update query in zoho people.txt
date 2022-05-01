@@ -1,0 +1,6 @@
+getrec = zoho.people.getRecordByID("employee",emp_id);
+update_Collection = Collection();
+update_Collection.insert("recordid":id.toLong());
+update_Collection.insert("Current_Salary":getrec.get("Basic_Salary"));
+update_rec = zoho.people.update("Salary",update_Collection.toMap());
+info update_rec;

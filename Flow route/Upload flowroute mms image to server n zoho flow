@@ -1,0 +1,17 @@
+string UploadFile(string url, string fileName)
+{
+r = url.toJSONList();
+imageURL = r.getJSON("attributes").get("url");
+d = fileName.toJSONList();
+dFilename = r.getJSON("id");
+mp = Map();
+mp.put("url",imageURL);
+mp.put("filename",dFilename);
+x = invokeurl
+[
+	url :"http://genotecq.com/ZohoDeveloper/zohosms/zoho-2.php"
+	type :GET
+	parameters:mp
+];
+return "http://genotecq.com/ZohoDeveloper/zohosms/uploads/" + dFilename;
+}

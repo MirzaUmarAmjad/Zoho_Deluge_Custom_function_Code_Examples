@@ -1,0 +1,49 @@
+void add_plus_one_for_task_status(int taskID)
+{
+response = zoho.projects.getRecordById("ecomexpertsio","1667471000000130203","tasks",taskID);
+currentStatus = response.get("tasks").get(0).get("status").get("name");
+oldStatus = "";
+numberOfQITime = 0;
+NumberOfClientTime = 0;
+custom_fields = response.get("tasks").get(0).get("custom_fields");
+values_map = Map();
+for each  custom_field in custom_fields
+{
+	if(custom_field.get("column_name") == "UDF_CHAR8")
+	{
+		oldStatus = custom_field.get("value");
+	}
+	if(custom_field.get("column_name") == "UDF_LONG1")
+	{
+		numberOfQITime = custom_field.get("value");
+	}
+	if(custom_field.get("column_name") == "UDF_LONG2")
+	{
+		NumberOfClientTime = custom_field.get("value");
+	}
+}
+if(currentStatus != oldStatus)
+{
+	info "coming in";
+	if(currentStatus == "Quality Inspection")
+	{
+		//# of times to QI
+		total = numberOfQITime.toLong() + 1;
+		values_map.put("custom_fields",{"UDF_LONG1":total,"UDF_CHAR8":currentStatus});
+		response = zoho.projects.update("ecomexpertsio",1667471000000130203,"tasks",1667471000000511107,values_map);
+	}
+	else if(currentStatus == "Submitted to Client")
+	{
+		//# of times to client
+		total = NumberOfClientTime.toLong() + 1;
+		values_map.put("custom_fields",{"UDF_LONG2":total,"UDF_CHAR8":currentStatus});
+		response = zoho.projects.update("ecomexpertsio",1667471000000130203,"tasks",1667471000000511107,values_map);
+	}
+	else
+	{
+		values_map.put("custom_fields",{"UDF_CHAR8":currentStatus});
+	}
+}
+//update
+response = zoho.projects.update("ecomexpertsio",1667471000000130203,"tasks",taskID,values_map);
+}

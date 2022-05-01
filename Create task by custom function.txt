@@ -1,0 +1,17 @@
+getrec = zoho.crm.getRecords("Leads");
+for each x in getrec
+{
+	if(x.get("Task Sent?")  !=  "Yes")
+	{
+		data=map();
+		data.put("Subject",("Call customer in 30 min or assign to agent"));
+		data.put("SEMODULE","Leads");
+		data.put("SEID",x.get("LEADID"));
+		data.put("Related To","test");
+		data.put("SMOWNERID",x.get("SMOWNERID"));
+		data.put("Due Date",x.get("Created Time"));
+		data.put("Priority","High");
+		data.put("Send Notification Email",true);
+		ap = zoho.crm.create("Tasks",data);
+	}
+}

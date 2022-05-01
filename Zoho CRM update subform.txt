@@ -1,0 +1,38 @@
+It is possible to add a new row in an existing subform. Please refer to the sample code below: 
+
+acctDetails = zoho.crm.getRecordById("Accounts",acctId.toLong());
+//info acctDetails;
+subform = ifnull(acctDetails.get("Branch_Locations_Summary"),"");
+if(subform == "")
+{
+	newsubform = List();
+	subforms = Map();
+	subforms.put("Location","Chennai");
+	subforms.put("Best_Contact","Zoho contacts");
+	newsubform.add(subforms);
+	mp = Map();
+	mp.put("Branch_Locations_Summary",newsubform);
+	update = zoho.crm.updateRecord("Accounts",acctId.toLong(),mp);
+	info update;
+}
+else
+{
+	oldsubform = List();
+	for each ele in subform
+	{
+		oldmap = Map();
+		oldmap.put("id",ele.get("id"));
+		oldsubform.add(oldmap);
+	}
+	subforms = Map();
+	subforms.put("Location","Chennai");
+	subforms.put("Best_Contact","Zoho contacts");
+	oldsubform.add(subforms);
+	mp = Map();
+	mp.put("Branch_Locations_Summary",oldsubform);
+	update = zoho.crm.updateRecord("Accounts",acctId.toLong(),mp);
+	info update;
+}
+
+
+Let us know if you need any further clarification.

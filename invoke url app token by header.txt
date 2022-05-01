@@ -1,0 +1,7 @@
+getORGDetails = invokeurl
+// [
+// 	url :"https://desk.zoho.com/api/v1/organizations"
+// 	type :GET
+// 	headers:{"Authorization":"Zoho-authtoken " + zohoSupportAuthtoken}
+// ];
+ info getORGDetails;

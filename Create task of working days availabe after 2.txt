@@ -1,0 +1,40 @@
+daynumber=now.getDayOfWeek();
+if(daynumber  ==  1)
+{
+	day=now.addDay(1);
+}
+else if(daynumber  ==  2)
+{
+	day=now.addDay(2);
+}
+else if(daynumber  ==  3)
+{
+	day=now.addDay(2);
+}
+else if(daynumber  ==  4)
+{
+	day=now.addDay(2);
+}
+else if(daynumber  ==  5)
+{
+	day=now.addDay(4);
+}
+else if(daynumber  ==  6)
+{
+	day=now.addDay(3);
+}
+else if(daynumber  ==  7)
+{
+	day=now.addDay(2);
+}
+getrec = zoho.crm.getRecordById("Leads",input.id);
+smownerId=((getrec).get("SMOWNERID")).toString();
+mp=map();
+mp.put("Status","Not Started");
+mp.put("Priority","High");
+mp.put("SEMODULE","Leads");
+mp.put("SEID",input.id);
+mp.put("SMOWNERID",smownerId);
+mp.put("Due Date",day);
+mp.put("Subject","Follow up call to the customer");
+Task = zoho.crm.create("Tasks",mp);

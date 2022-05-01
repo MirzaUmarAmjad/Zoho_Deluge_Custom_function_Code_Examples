@@ -1,0 +1,44 @@
+/////////-------------Task--------------///////////////
+Executed Successfully
+Log messages:
+{"Related To":"Zurich IFA Group","Status":"Not Started","Send Notification Email":"false","MODIFIEDBY":"65298000000075011","Contact Name":"Richard Moodey","Priority":"Lowest","SMCREATORID":"65298000000075011","SMOWNERID":"65298000000075011","Task Owner":"Stephen Pitcher","CONTACTID":"65298000000158558","Modified Time":"2017-11-16 13:33:35","Subject":"Test","ACTIVITYID":"65298000000180018","Created Time":"2017-11-16 13:33:35","SEMODULE":"Accounts","Modified By":"Stephen Pitcher","RELATEDTOID":"65298000000122079","Created By":"Stephen Pitcher","Due Date":"2017-11-16"}
+////-------------Script for creation of Task-----------//////
+mp = Map();
+mp.put("Status" , "Not Started");
+mp.put("Priority" , "Lowest");
+mp.put("CONTACTID" , "65298000000158558");
+mp.put("SEMODULE" , "Accounts");
+mp.put("SEID" , "65298000000122079");
+mp.put("Due Date" , "2017-11-16");
+mp.put("Subject" , "Test");
+Task = zoho.crm.create("Tasks" , mp);
+
+//////////--------------Event----------------///////////////
+Executed Successfully
+Log messages:
+{"Related To":"Zurich IFA Group","Start DateTime":"2017-11-16 19:00:00","Venue":"sdf","MODIFIEDBY":"65298000000075011","Contact Name":"Richard Moodey","SMCREATORID":"65298000000075011","SMOWNERID":"65298000000075011","CONTACTID":"65298000000158558","Modified Time":"2017-11-16 13:51:30","Subject":"New Event","ACTIVITYID":"65298000000180027","Created Time":"2017-11-16 13:51:30","SEMODULE":"Accounts","Modified By":"Stephen Pitcher","UID":"65298000000180027","Event Owner":"Stephen Pitcher","RELATEDTOID":"65298000000122079","End DateTime":"2017-11-16 20:00:00","Created By":"Stephen Pitcher"}
+////-------------Script for creation of Event-----------//////
+mp = Map();
+mp.put("Start DateTime" , "2017-11-16 19:00:00");
+mp.put("End DateTime" , "2017-11-16 20:00:00");
+mp.put("Venue" , "London");
+mp.put("CONTACTID" , "65298000000158558");
+mp.put("SEMODULE" , "Accounts");
+mp.put("SEID" , "65298000000122079");
+mp.put("Subject" , "New Event");
+Task = zoho.crm.create("Events" , mp);
+
+//////////--------------Call----------------///////////////
+Executed Successfully
+Log messages:
+{"Related To":"Zurich IFA Group","Call Start Time":"2017-11-16 13:52:00","Call Owner":"Stephen Pitcher","MODIFIEDBY":"65298000000075011","Contact Name":"Richard Moodey","Billable":"false","Call Duration":"05:00","SMCREATORID":"65298000000075011","SMOWNERID":"65298000000075011","CONTACTID":"65298000000158558","Modified Time":"2017-11-16 13:55:06","Subject":"asd","Call Type":"Outbound","ACTIVITYID":"65298000000180035","Created Time":"2017-11-16 13:55:06","SEMODULE":"Accounts","Modified By":"Stephen Pitcher","Call Status":"Attended Dialled","RELATEDTOID":"65298000000122079","Call Duration (in seconds)":"300","Created By":"Stephen Pitcher"}
+////-------------Script for creation of Event-----------//////
+mp = Map();
+mp.put("Call Start Time" , "2017-11-16 13:52:00");
+mp.put("Call Status" , "Attended Dialled");
+mp.put("Call Duration" , "05:00");
+mp.put("CONTACTID" , "65298000000158558");
+mp.put("SEMODULE" , "Accounts");
+mp.put("SEID" , "65298000000122079");
+mp.put("Subject" , "New Call");
+Task = zoho.crm.create("Calls" , mp);

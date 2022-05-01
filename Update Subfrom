@@ -1,0 +1,10 @@
+getrec = zoho.crm.getRecordById("Leads", 3105015000000430001) ;
+
+ma1 = map() ;
+ma1.put("name1", "test me 1") ;
+
+malist = List() ;
+malist.add(ma1) ;
+
+upd = zoho.crm.update("Leads", 3105015000000430001, {"test":malist}) ;
+info upd ;

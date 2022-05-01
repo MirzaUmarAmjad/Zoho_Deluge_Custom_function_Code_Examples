@@ -1,0 +1,12 @@
+response = Map();
+//create lead in CRM
+mp = Map();
+mp.put("Question",answers.get("question").get("text"));
+mp.put("Contact_preference",answers.get("contactPreference").get("text"));
+mp.put("Phone",answers.get("phone").get("text"));
+mp.put("Last_Name",answers.get("name").get("text"));
+mp.put("Email",answers.get("email").get("text"));
+crtRec = zoho.crm.createRecord("Leads",mp);
+response.put("action","end");
+response.put("replies",{{"text":"Thanks we will contact you as soon as possible. Have a Great day."}});
+return response;

@@ -1,0 +1,16 @@
+ap = zoho.crm.getRelatedRecords("Tasks","Leads",input.id.toString());
+for each x in ap
+{
+	if((x.get("Status")  !=  "Completed")  &&  (x.get("SEMODULE")  ==  "Leads"))
+	{
+		leadURL="https://crm.zoho.com/crm/EntityInfo.do?module=Leads&id=" + x.get("RELATEDTOID");
+		sendmail
+		[
+			from:zoho.adminuserid
+			to:zoho.adminuserid,x.get("SMOWNERID")
+			subject:"test"
+			message:("Call does not make by agent in 30 minutes. ") + leadURL
+			content type:HTML
+		]
+	}
+}

@@ -1,0 +1,6 @@
+n=50;
+counter = leftpad("1",n).replaceAll(" ","1,").toList();
+for each index i in counter
+{
+//your code
+}

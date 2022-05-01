@@ -1,0 +1,5 @@
+response = Map();
+response.put("action","reply");
+response.put("replies",{"Thank you for your interest in Bio+Me. We would love to help you !","Do you like to ask any question?"});
+response.put("input",{"type":"select","options":{"Yes","No"}});
+return response;

@@ -1,0 +1,32 @@
+id = purchaseorder.get("purchaseorder_id");
+getPurchaseOrder = zoho.books.getRecordsByID("purchaseorders",organization.get("organization_id"),id);
+ProductsRecord = getPurchaseOrder.get("purchaseorder").get("line_items");
+listVar = List();
+i = 0;
+for each  line in ProductsRecord
+{
+	mapVar = Map();
+	mapVar.put("item_id",line.get("item_id"));
+	mapVar.put("rate",line.get("rate"));
+	mapVar.put("tax_id",line.get("tax_id"));
+	mapVar.put("quantity",line.get("quantity"));
+	mapVar.put("purchaseorder_item_id",line.get("line_item_id"));
+	listVar.add(mapVar);
+	i = i + 1;
+}
+val = Map();
+purchaseorder_ids = list();
+purchaseorder_ids.add(purchaseorder.get("purchaseorder_id"));
+val.put("purchaseorder_ids",purchaseorder_ids);
+val.put("vendor_id",getPurchaseOrder.get("purchaseorder").get("vendor_id"));
+val.put("due_date",getPurchaseOrder.get("purchaseorder").get("delivery_date"));
+val.put("date",getPurchaseOrder.get("purchaseorder").get("date"));
+val.put("bill_number",getPurchaseOrder.get("purchaseorder").get("purchaseorder_number"));
+val.put("reference_number",getPurchaseOrder.get("purchaseorder").get("purchaseorder_number"));
+val.put("line_items",listVar);
+// params = Map();
+// params.put("JSONString",val);
+info i;
+
+BillCreatedResult = zoho.books.createRecord("bills","662862623",val) ;
+info BillCreatedResult ;

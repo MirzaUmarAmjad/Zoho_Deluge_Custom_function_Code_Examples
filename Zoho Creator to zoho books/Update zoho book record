@@ -1,0 +1,72 @@
+params = Map();
+data = Map();
+invoiceMap = Map();
+itemList = List();
+//get old product
+for each  item in Old_Product_Detail
+{
+	item1 = Map();
+	item1.put("item_id",item.Product_Id);
+	item1.put("rate",item.Price);
+	item1.put("quantity",item.Quantity);
+	itemList.add(item1);
+}
+//get old product
+for each  item2 in New_Product_Detail
+{
+	item1 = Map();
+	item1.put("item_id",item2.Product_Id);
+	item1.put("rate",item2.Price);
+	item1.put("quantity",item2.Quantity);
+	itemList.add(item1);
+}
+data.put("line_items",itemList);
+params.put("JSONString",data);
+if(Order_Type == "Invoice")
+{
+	updateRec = invokeurl
+[
+	url :"https://books.zoho.com/api/v3/invoices/" + input.Invoice_Id + "?organization_id=662862623"
+	type :PUT
+	parameters:params
+	connection:"ZohoBookConnection"
+];
+}
+else if(Order_Type == "Sales Order")
+{
+	updateRec = invokeurl
+[
+	url :"https://books.zoho.com/api/v3/salesorders/" + input.Sales_Order_Numbe + "?organization_id=662862623"
+	type :PUT
+	parameters:params
+	connection:"ZohoBookConnection"
+];
+}
+else if(Order_Type == "Purchase Order")
+{
+	updateRec = invokeurl
+[
+	url :"https://books.zoho.com/api/v3/purchaseorders/" + input.Purchase_Order_Num + "?organization_id=662862623"
+	type :PUT
+	parameters:params
+	connection:"ZohoBookConnection"
+];
+}
+else if(Order_Type == "Bill")
+{
+	updateRec = invokeurl
+[
+	url :"https://books.zoho.com/api/v3/bills/" + input.Bill_Id + "?organization_id=662862623"
+	type :PUT
+	parameters:params
+	connection:"ZohoBookConnection"
+];
+}
+if(updateRec.get("code") == 0)
+{
+	input.Status = "Completed";
+}
+else
+{
+	info "Record did not update.";
+}

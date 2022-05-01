@@ -1,0 +1,129 @@
+2019-06-10 08:16:07 SEVERE: Failed to connect to MySQL: (2002) No connection could be made because the target machine actively refused it.
+
+2019-06-10 08:16:07 SEVERE: Getting result set failed: () 
+2019-06-10 08:16:07 SEVERE: Exception occured while getting OAuthTokens from DB(file::ZohoOAuthPersistenceHandler)(No Tokens exist for the given user-identifier,Please generate and try again.)
+zcrmsdk\oauth\exception\ZohoOAuthException Caused by:'No Tokens exist for the given user-identifier,Please generate and try again.' in C:\xampp\htdocs\woocommerce\vendor\zohocrm\php-sdk\src\oauth\persistence\ZohoOAuthPersistenceHandler.php(45)
+#0 C:\xampp\htdocs\woocommerce\vendor\zohocrm\php-sdk\src\oauth\ZohoOAuthClient.php(37): zcrmsdk\oauth\persistence\ZohoOAuthPersistenceHandler->getOAuthTokens('noel@controlfre...')
+#1 C:\xampp\htdocs\woocommerce\vendor\zohocrm\php-sdk\src\crm\utility\ZCRMConfigUtil.php(98): zcrmsdk\oauth\ZohoOAuthClient->getAccessToken('noel@controlfre...')
+#2 C:\xampp\htdocs\woocommerce\vendor\zohocrm\php-sdk\src\crm\api\APIRequest.php(71): zcrmsdk\crm\utility\ZCRMConfigUtil::getAccessToken()
+#3 C:\xampp\htdocs\woocommerce\vendor\zohocrm\php-sdk\src\crm\api\APIRequest.php(113): zcrmsdk\crm\api\APIRequest->authenticateRequest()
+#4 C:\xampp\htdocs\woocommerce\vendor\zohocrm\php-sdk\src\crm\api\handler\MetaDataAPIHandler.php(34): zcrmsdk\crm\api\APIRequest->getBulkAPIResponse()
+#5 C:\xampp\htdocs\woocommerce\vendor\zohocrm\php-sdk\src\crm\setup\restclient\ZCRMRestClient.php(49): zcrmsdk\crm\api\handler\MetaDataAPIHandler->getAllModules()
+#6 C:\xampp\htdocs\woocommerce\index.php(15): zcrmsdk\crm\setup\restclient\ZCRMRestClient->getAllModules()
+#7 C:\xampp\htdocs\woocommerce\index.php(53): RestClient->getAllModules()
+#8 {main}
+2019-06-10 08:16:07 INFO: Access Token has expired. Hence refreshing.
+2019-06-10 08:25:50 SEVERE: Failed to connect to MySQL: (2002) No connection could be made because the target machine actively refused it.
+
+2019-06-10 08:25:50 SEVERE: Getting result set failed: () 
+2019-06-10 08:25:50 SEVERE: Exception occured while getting OAuthTokens from DB(file::ZohoOAuthPersistenceHandler)(No Tokens exist for the given user-identifier,Please generate and try again.)
+zcrmsdk\oauth\exception\ZohoOAuthException Caused by:'No Tokens exist for the given user-identifier,Please generate and try again.' in C:\xampp\htdocs\woocommerce\vendor\zohocrm\php-sdk\src\oauth\persistence\ZohoOAuthPersistenceHandler.php(45)
+#0 C:\xampp\htdocs\woocommerce\vendor\zohocrm\php-sdk\src\oauth\ZohoOAuthClient.php(37): zcrmsdk\oauth\persistence\ZohoOAuthPersistenceHandler->getOAuthTokens('noel@controlfre...')
+#1 C:\xampp\htdocs\woocommerce\vendor\zohocrm\php-sdk\src\crm\utility\ZCRMConfigUtil.php(98): zcrmsdk\oauth\ZohoOAuthClient->getAccessToken('noel@controlfre...')
+#2 C:\xampp\htdocs\woocommerce\vendor\zohocrm\php-sdk\src\crm\api\APIRequest.php(71): zcrmsdk\crm\utility\ZCRMConfigUtil::getAccessToken()
+#3 C:\xampp\htdocs\woocommerce\vendor\zohocrm\php-sdk\src\crm\api\APIRequest.php(113): zcrmsdk\crm\api\APIRequest->authenticateRequest()
+#4 C:\xampp\htdocs\woocommerce\vendor\zohocrm\php-sdk\src\crm\api\handler\MetaDataAPIHandler.php(34): zcrmsdk\crm\api\APIRequest->getBulkAPIResponse()
+#5 C:\xampp\htdocs\woocommerce\vendor\zohocrm\php-sdk\src\crm\setup\restclient\ZCRMRestClient.php(49): zcrmsdk\crm\api\handler\MetaDataAPIHandler->getAllModules()
+#6 C:\xampp\htdocs\woocommerce\index.php(15): zcrmsdk\crm\setup\restclient\ZCRMRestClient->getAllModules()
+#7 C:\xampp\htdocs\woocommerce\index.php(53): RestClient->getAllModules()
+#8 {main}
+2019-06-10 08:25:50 INFO: Access Token has expired. Hence refreshing.
+2019-06-10 08:25:54 SEVERE: Failed to connect to MySQL: (2002) No connection could be made because the target machine actively refused it.
+
+2019-06-10 08:25:54 SEVERE: Getting result set failed: () 
+2019-06-10 08:25:54 SEVERE: Exception occured while getting OAuthTokens from DB(file::ZohoOAuthPersistenceHandler)(No Tokens exist for the given user-identifier,Please generate and try again.)
+zcrmsdk\oauth\exception\ZohoOAuthException Caused by:'No Tokens exist for the given user-identifier,Please generate and try again.' in C:\xampp\htdocs\woocommerce\vendor\zohocrm\php-sdk\src\oauth\persistence\ZohoOAuthPersistenceHandler.php(45)
+#0 C:\xampp\htdocs\woocommerce\vendor\zohocrm\php-sdk\src\oauth\ZohoOAuthClient.php(37): zcrmsdk\oauth\persistence\ZohoOAuthPersistenceHandler->getOAuthTokens('noel@controlfre...')
+#1 C:\xampp\htdocs\woocommerce\vendor\zohocrm\php-sdk\src\crm\utility\ZCRMConfigUtil.php(98): zcrmsdk\oauth\ZohoOAuthClient->getAccessToken('noel@controlfre...')
+#2 C:\xampp\htdocs\woocommerce\vendor\zohocrm\php-sdk\src\crm\api\APIRequest.php(71): zcrmsdk\crm\utility\ZCRMConfigUtil::getAccessToken()
+#3 C:\xampp\htdocs\woocommerce\vendor\zohocrm\php-sdk\src\crm\api\APIRequest.php(113): zcrmsdk\crm\api\APIRequest->authenticateRequest()
+#4 C:\xampp\htdocs\woocommerce\vendor\zohocrm\php-sdk\src\crm\api\handler\MetaDataAPIHandler.php(34): zcrmsdk\crm\api\APIRequest->getBulkAPIResponse()
+#5 C:\xampp\htdocs\woocommerce\vendor\zohocrm\php-sdk\src\crm\setup\restclient\ZCRMRestClient.php(49): zcrmsdk\crm\api\handler\MetaDataAPIHandler->getAllModules()
+#6 C:\xampp\htdocs\woocommerce\index.php(15): zcrmsdk\crm\setup\restclient\ZCRMRestClient->getAllModules()
+#7 C:\xampp\htdocs\woocommerce\index.php(53): RestClient->getAllModules()
+#8 {main}
+2019-06-10 08:25:54 INFO: Access Token has expired. Hence refreshing.
+2019-06-10 08:25:57 SEVERE: Failed to connect to MySQL: (2002) No connection could be made because the target machine actively refused it.
+
+2019-06-10 08:25:57 SEVERE: Getting result set failed: () 
+2019-06-10 08:25:57 SEVERE: Exception occured while getting OAuthTokens from DB(file::ZohoOAuthPersistenceHandler)(No Tokens exist for the given user-identifier,Please generate and try again.)
+zcrmsdk\oauth\exception\ZohoOAuthException Caused by:'No Tokens exist for the given user-identifier,Please generate and try again.' in C:\xampp\htdocs\woocommerce\vendor\zohocrm\php-sdk\src\oauth\persistence\ZohoOAuthPersistenceHandler.php(45)
+#0 C:\xampp\htdocs\woocommerce\vendor\zohocrm\php-sdk\src\oauth\ZohoOAuthClient.php(37): zcrmsdk\oauth\persistence\ZohoOAuthPersistenceHandler->getOAuthTokens('noel@controlfre...')
+#1 C:\xampp\htdocs\woocommerce\vendor\zohocrm\php-sdk\src\crm\utility\ZCRMConfigUtil.php(98): zcrmsdk\oauth\ZohoOAuthClient->getAccessToken('noel@controlfre...')
+#2 C:\xampp\htdocs\woocommerce\vendor\zohocrm\php-sdk\src\crm\api\APIRequest.php(71): zcrmsdk\crm\utility\ZCRMConfigUtil::getAccessToken()
+#3 C:\xampp\htdocs\woocommerce\vendor\zohocrm\php-sdk\src\crm\api\APIRequest.php(113): zcrmsdk\crm\api\APIRequest->authenticateRequest()
+#4 C:\xampp\htdocs\woocommerce\vendor\zohocrm\php-sdk\src\crm\api\handler\MetaDataAPIHandler.php(34): zcrmsdk\crm\api\APIRequest->getBulkAPIResponse()
+#5 C:\xampp\htdocs\woocommerce\vendor\zohocrm\php-sdk\src\crm\setup\restclient\ZCRMRestClient.php(49): zcrmsdk\crm\api\handler\MetaDataAPIHandler->getAllModules()
+#6 C:\xampp\htdocs\woocommerce\index.php(15): zcrmsdk\crm\setup\restclient\ZCRMRestClient->getAllModules()
+#7 C:\xampp\htdocs\woocommerce\index.php(53): RestClient->getAllModules()
+#8 {main}
+2019-06-10 08:25:57 INFO: Access Token has expired. Hence refreshing.
+2019-06-10 08:27:28 SEVERE: Failed to connect to MySQL: (2002) No connection could be made because the target machine actively refused it.
+
+2019-06-10 08:27:28 SEVERE: Getting result set failed: () 
+2019-06-10 08:27:28 SEVERE: Exception occured while getting OAuthTokens from DB(file::ZohoOAuthPersistenceHandler)(No Tokens exist for the given user-identifier,Please generate and try again.)
+zcrmsdk\oauth\exception\ZohoOAuthException Caused by:'No Tokens exist for the given user-identifier,Please generate and try again.' in C:\xampp\htdocs\woocommerce\vendor\zohocrm\php-sdk\src\oauth\persistence\ZohoOAuthPersistenceHandler.php(45)
+#0 C:\xampp\htdocs\woocommerce\vendor\zohocrm\php-sdk\src\oauth\ZohoOAuthClient.php(37): zcrmsdk\oauth\persistence\ZohoOAuthPersistenceHandler->getOAuthTokens('noel@controlfre...')
+#1 C:\xampp\htdocs\woocommerce\vendor\zohocrm\php-sdk\src\crm\utility\ZCRMConfigUtil.php(98): zcrmsdk\oauth\ZohoOAuthClient->getAccessToken('noel@controlfre...')
+#2 C:\xampp\htdocs\woocommerce\vendor\zohocrm\php-sdk\src\crm\api\APIRequest.php(71): zcrmsdk\crm\utility\ZCRMConfigUtil::getAccessToken()
+#3 C:\xampp\htdocs\woocommerce\vendor\zohocrm\php-sdk\src\crm\api\APIRequest.php(113): zcrmsdk\crm\api\APIRequest->authenticateRequest()
+#4 C:\xampp\htdocs\woocommerce\vendor\zohocrm\php-sdk\src\crm\api\handler\MetaDataAPIHandler.php(34): zcrmsdk\crm\api\APIRequest->getBulkAPIResponse()
+#5 C:\xampp\htdocs\woocommerce\vendor\zohocrm\php-sdk\src\crm\setup\restclient\ZCRMRestClient.php(49): zcrmsdk\crm\api\handler\MetaDataAPIHandler->getAllModules()
+#6 C:\xampp\htdocs\woocommerce\index.php(15): zcrmsdk\crm\setup\restclient\ZCRMRestClient->getAllModules()
+#7 C:\xampp\htdocs\woocommerce\index.php(53): RestClient->getAllModules()
+#8 {main}
+2019-06-10 08:27:28 INFO: Access Token has expired. Hence refreshing.
+2019-06-10 08:27:31 SEVERE: Failed to connect to MySQL: (2002) No connection could be made because the target machine actively refused it.
+
+2019-06-10 08:27:31 SEVERE: Getting result set failed: () 
+2019-06-10 08:27:31 SEVERE: Exception occured while getting OAuthTokens from DB(file::ZohoOAuthPersistenceHandler)(No Tokens exist for the given user-identifier,Please generate and try again.)
+zcrmsdk\oauth\exception\ZohoOAuthException Caused by:'No Tokens exist for the given user-identifier,Please generate and try again.' in C:\xampp\htdocs\woocommerce\vendor\zohocrm\php-sdk\src\oauth\persistence\ZohoOAuthPersistenceHandler.php(45)
+#0 C:\xampp\htdocs\woocommerce\vendor\zohocrm\php-sdk\src\oauth\ZohoOAuthClient.php(37): zcrmsdk\oauth\persistence\ZohoOAuthPersistenceHandler->getOAuthTokens('noel@controlfre...')
+#1 C:\xampp\htdocs\woocommerce\vendor\zohocrm\php-sdk\src\crm\utility\ZCRMConfigUtil.php(98): zcrmsdk\oauth\ZohoOAuthClient->getAccessToken('noel@controlfre...')
+#2 C:\xampp\htdocs\woocommerce\vendor\zohocrm\php-sdk\src\crm\api\APIRequest.php(71): zcrmsdk\crm\utility\ZCRMConfigUtil::getAccessToken()
+#3 C:\xampp\htdocs\woocommerce\vendor\zohocrm\php-sdk\src\crm\api\APIRequest.php(113): zcrmsdk\crm\api\APIRequest->authenticateRequest()
+#4 C:\xampp\htdocs\woocommerce\vendor\zohocrm\php-sdk\src\crm\api\handler\MetaDataAPIHandler.php(34): zcrmsdk\crm\api\APIRequest->getBulkAPIResponse()
+#5 C:\xampp\htdocs\woocommerce\vendor\zohocrm\php-sdk\src\crm\setup\restclient\ZCRMRestClient.php(49): zcrmsdk\crm\api\handler\MetaDataAPIHandler->getAllModules()
+#6 C:\xampp\htdocs\woocommerce\index.php(15): zcrmsdk\crm\setup\restclient\ZCRMRestClient->getAllModules()
+#7 C:\xampp\htdocs\woocommerce\index.php(53): RestClient->getAllModules()
+#8 {main}
+2019-06-10 08:27:31 INFO: Access Token has expired. Hence refreshing.
+2019-06-10 08:27:44 SEVERE: Failed to connect to MySQL: (2002) No connection could be made because the target machine actively refused it.
+
+2019-06-10 08:27:44 SEVERE: Getting result set failed: () 
+2019-06-10 08:27:44 SEVERE: Exception occured while getting OAuthTokens from DB(file::ZohoOAuthPersistenceHandler)(No Tokens exist for the given user-identifier,Please generate and try again.)
+zcrmsdk\oauth\exception\ZohoOAuthException Caused by:'No Tokens exist for the given user-identifier,Please generate and try again.' in C:\xampp\htdocs\woocommerce\vendor\zohocrm\php-sdk\src\oauth\persistence\ZohoOAuthPersistenceHandler.php(45)
+#0 C:\xampp\htdocs\woocommerce\vendor\zohocrm\php-sdk\src\oauth\ZohoOAuthClient.php(37): zcrmsdk\oauth\persistence\ZohoOAuthPersistenceHandler->getOAuthTokens('noel@controlfre...')
+#1 C:\xampp\htdocs\woocommerce\vendor\zohocrm\php-sdk\src\crm\utility\ZCRMConfigUtil.php(98): zcrmsdk\oauth\ZohoOAuthClient->getAccessToken('noel@controlfre...')
+#2 C:\xampp\htdocs\woocommerce\vendor\zohocrm\php-sdk\src\crm\api\APIRequest.php(71): zcrmsdk\crm\utility\ZCRMConfigUtil::getAccessToken()
+#3 C:\xampp\htdocs\woocommerce\vendor\zohocrm\php-sdk\src\crm\api\APIRequest.php(113): zcrmsdk\crm\api\APIRequest->authenticateRequest()
+#4 C:\xampp\htdocs\woocommerce\vendor\zohocrm\php-sdk\src\crm\api\handler\MetaDataAPIHandler.php(34): zcrmsdk\crm\api\APIRequest->getBulkAPIResponse()
+#5 C:\xampp\htdocs\woocommerce\vendor\zohocrm\php-sdk\src\crm\setup\restclient\ZCRMRestClient.php(49): zcrmsdk\crm\api\handler\MetaDataAPIHandler->getAllModules()
+#6 C:\xampp\htdocs\woocommerce\index.php(15): zcrmsdk\crm\setup\restclient\ZCRMRestClient->getAllModules()
+#7 C:\xampp\htdocs\woocommerce\index.php(53): RestClient->getAllModules()
+#8 {main}
+2019-06-10 08:27:44 INFO: Access Token has expired. Hence refreshing.
+2019-06-10 08:27:55 SEVERE: Failed to connect to MySQL: (2002) No connection could be made because the target machine actively refused it.
+
+2019-06-10 08:27:55 SEVERE: Getting result set failed: () 
+2019-06-10 08:27:55 SEVERE: Exception occured while getting OAuthTokens from DB(file::ZohoOAuthPersistenceHandler)(No Tokens exist for the given user-identifier,Please generate and try again.)
+zcrmsdk\oauth\exception\ZohoOAuthException Caused by:'No Tokens exist for the given user-identifier,Please generate and try again.' in C:\xampp\htdocs\woocommerce\vendor\zohocrm\php-sdk\src\oauth\persistence\ZohoOAuthPersistenceHandler.php(45)
+#0 C:\xampp\htdocs\woocommerce\vendor\zohocrm\php-sdk\src\oauth\ZohoOAuthClient.php(37): zcrmsdk\oauth\persistence\ZohoOAuthPersistenceHandler->getOAuthTokens('noel@controlfre...')
+#1 C:\xampp\htdocs\woocommerce\vendor\zohocrm\php-sdk\src\crm\utility\ZCRMConfigUtil.php(98): zcrmsdk\oauth\ZohoOAuthClient->getAccessToken('noel@controlfre...')
+#2 C:\xampp\htdocs\woocommerce\vendor\zohocrm\php-sdk\src\crm\api\APIRequest.php(71): zcrmsdk\crm\utility\ZCRMConfigUtil::getAccessToken()
+#3 C:\xampp\htdocs\woocommerce\vendor\zohocrm\php-sdk\src\crm\api\APIRequest.php(113): zcrmsdk\crm\api\APIRequest->authenticateRequest()
+#4 C:\xampp\htdocs\woocommerce\vendor\zohocrm\php-sdk\src\crm\api\handler\MetaDataAPIHandler.php(34): zcrmsdk\crm\api\APIRequest->getBulkAPIResponse()
+#5 C:\xampp\htdocs\woocommerce\vendor\zohocrm\php-sdk\src\crm\setup\restclient\ZCRMRestClient.php(49): zcrmsdk\crm\api\handler\MetaDataAPIHandler->getAllModules()
+#6 C:\xampp\htdocs\woocommerce\index.php(15): zcrmsdk\crm\setup\restclient\ZCRMRestClient->getAllModules()
+#7 C:\xampp\htdocs\woocommerce\index.php(53): RestClient->getAllModules()
+#8 {main}
+2019-06-10 08:27:55 INFO: Access Token has expired. Hence refreshing.
+2019-06-10 16:39:15 INFO: Access Token has expired. Hence refreshing.
+2019-06-11 09:42:41 INFO: Access Token has expired. Hence refreshing.
+2019-06-11 10:43:03 INFO: Access Token has expired. Hence refreshing.
+2019-06-11 16:53:45 INFO: Access Token has expired. Hence refreshing.
+2019-06-11 22:22:02 INFO: Access Token has expired. Hence refreshing.
+2019-06-12 20:05:08 INFO: Access Token has expired. Hence refreshing.
+2019-06-12 21:53:29 INFO: Access Token has expired. Hence refreshing.
+2019-06-12 22:57:55 INFO: Access Token has expired. Hence refreshing.
+2019-06-13 00:00:05 INFO: Access Token has expired. Hence refreshing.

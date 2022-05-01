@@ -1,0 +1,21 @@
+if(Image == "")
+{
+	thisapp.sms.sendSMS(input.ID);
+}
+else
+{
+	input.Image.setParamName("the_file");
+	list_of_files = List();
+	list_of_files.add(input.Image);
+	x = invokeurl
+[
+	url :"http://genotecq.com/ZohoDeveloper/zohosms/zoho.php"
+	type :POST
+	files:list_of_files
+];
+	if(x.get("filename").isEmpty() == false)
+	{
+		fileuploadurl = "http://genotecq.com/ZohoDeveloper/zohosms/uploads/" + x.get("filename");
+		thisapp.sms.sendMMS(input.ID,fileuploadurl);
+	}
+}

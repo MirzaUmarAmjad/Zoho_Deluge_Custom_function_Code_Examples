@@ -1,0 +1,33 @@
+
+/*
+This is a sample function. Uncomment to execute or make changes to this function.
+salesorderID = salesorder.get("salesorder_id");
+salesorderdate = salesorder.get("date").toDate();
+organizationID = organization.get("organization_id");
+*/
+// response = zoho.books.getOrganizations();
+// info response;
+Id = salesorder.get("salesorder_id");
+SalesOrder = zoho.books.getRecordsByID("salesorders",organization.get("organization_id"),Id);
+ProductsRecord = SalesOrder.get("salesorder").get("line_items");
+listVar = List();
+for each  line in ProductsRecord
+{
+	mapVar = Map();
+	mapVar.put("item_id",line.get("item_id"));
+	mapVar.put("rate",line.get("rate"));
+	mapVar.put("tax_id",line.get("tax_id"));
+	mapVar.put("quantity",line.get("quantity"));
+	mapVar.put("salesorder_item_id",line.get("line_item_id"));
+	listVar.add(mapVar);
+}
+values = Map();
+values.put("customer_id",SalesOrder.get("salesorder").get("customer_id"));
+values.put("payment_terms_label",SalesOrder.get("salesorder").get("payment_terms_label"));
+values.put("payment_terms",SalesOrder.get("salesorder").get("payment_terms"));
+values.put("invoice_number",SalesOrder.get("salesorder").get("salesorder_number"));
+values.put("salesorder_id",Id);
+values.put("line_items",listVar);
+values.put("reference_number",SalesOrder.get("salesorder").get("salesorder_number"));
+response = zoho.books.createRecord("Invoices",organization.get("organization_id"),values);
+info response;
